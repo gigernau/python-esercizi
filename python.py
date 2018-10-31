@@ -1,3 +1,6 @@
+# definizione di varie fuzioni
+
+#Gioco di snake
 def snake():
     # SNAKES GAME
     # Use ARROW KEYS to play, SPACE BAR for pausing/resuming and Esc Key for exiting
@@ -77,6 +80,7 @@ def snake():
     print("\nScore - " + str(score))
 
 
+#varie prove I/O e varie utilizzi di liste
 def prova1():
 	print ("Hello Word!")
 	print ('hello giangi')
@@ -210,7 +214,7 @@ def prova1():
 
 
 
-#fibonacci
+#Calcolo dell' n-esimo numero della sequenza di Fibonacci
 def fibonacci(x):
 	"""	
 	HELP:
@@ -226,7 +230,7 @@ def fibonacci(x):
 		i+=1
 	return n2
 
-
+#radice quadrata
 import math as m
 def rad(y):
 	"""
@@ -236,6 +240,7 @@ def rad(y):
 	return m.sqrt(y)
 
 
+# fuzione con gestione di eccezioni
 def trymode():
 	"""
 	HELP:
@@ -250,7 +255,7 @@ def trymode():
 		print("Errore!")
 
 
-
+#generare numeri random
 def randomiz():
 	import random as r
 	for i in range(10):
@@ -260,7 +265,7 @@ def randomiz():
 	from random import randint
 	print(randint(1,120))
 
-
+#lettura e scrittura su file .txt
 def file():
 
 	"""
@@ -296,7 +301,7 @@ def file():
 	finally:
 		file.close()
 
-
+#utilizzo di dizonari
 def dizionari():
 	diz = {"key1":"val", "casa":120000, 5:5}
 
@@ -315,7 +320,7 @@ def dizionari():
 	print(tupla1[1])
 	print(tupla1[1][2])
 
-
+#utilizzo liste
 def lista():
 	lista = [9,8,7,6,5,4,3,2,1]
 	print(lista[1-5])
@@ -326,7 +331,7 @@ def lista():
 	lista = [i**2 for i in range(random.randint(5,39)) if i**2 % 2 == 0]
 	print(lista)
 
-
+#utilizzo stringhe
 def string():
 
 	num1 = 12
@@ -337,6 +342,9 @@ def string():
 	msg1 = "Il mio nome è {name} e il mio cognome {surname}".format(name=7,surname=5)
 	print(msg1)
 
+	
+	
+#MAIN
 scelta = 1
 while (scelta != 0 ):
 	

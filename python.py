@@ -230,7 +230,27 @@ def fibonacci(x):
 		i+=1
 	return n2
 
-#radice quadrata
+#matematica
+def matematica():
+	"""
+	min() – questa funzione restituisce il valore minimo all’interno di una sequenza o una lista di numeri
+	max() – questa funzione restituisce il valore massimo all’interno di una sequenza o una lista di numeri
+	abs() – calcola il valore assoluto di un numero
+	round() – questa funzione arrotonda il numero per un certo numero di cifre decimali
+	sum() – calcola la somma di una lista di numeri
+	"""
+
+	n1 = min(1,5,0,3,4,6)
+	print(n1)
+	n2 = max([1,5,0,3,4,6])
+	print(n2)
+	n3 = abs(-12)
+	print(n3)
+	n4 = round(3.145,1)
+	print(n4)
+	n5 = sum([1.3,5.2,-0.6,3.1,4.4,6.9])
+	print(n5)
+
 import math as m
 def rad(y):
 	"""
@@ -320,6 +340,29 @@ def dizionari():
 	print(tupla1[1])
 	print(tupla1[1][2])
 
+def setExample():
+	set1 = set()
+	set1.add(1)
+	set1.add(4)
+	set1.add(6)
+	print(set1)
+	print(set1.pop())
+	print(set1)
+	set1.remove(6)
+	print(set1)
+
+	set2 = set(["“Uno”","”Due”","”Tre”"])
+	print(3 in set1)
+	print("“Uno”" in set2)
+
+	#operazione su set
+	A = {1,4,6,3}
+	B = {4,5,9,2}
+	print(A | B) # 1 2 3 4 5 9
+	print(A & B) # 4
+	print(A - B) # 1 3 6
+	print(A ^ B) # 1 2 3 5 6 9
+
 #utilizzo liste
 def lista():
 	lista = [9,8,7,6,5,4,3,2,1]
@@ -330,6 +373,35 @@ def lista():
 	import random
 	lista = [i**2 for i in range(random.randint(5,39)) if i**2 % 2 == 0]
 	print(lista)
+
+	#all() restituirà True solo se tutti gli elementi soddisferanno tale condizione
+	#any() è sufficiente che almeno uno la soddisfi
+	lista = [33,14,22,64,36]
+	if all([i > 10 for i in lista]):
+		print("Tutti i numeri sono maggiori di 10")
+
+	if any([i > 50 for i in lista]):
+		print("Nella lista ci sono elementi maggiori di 50")
+
+
+	#La funzione enumerate() per effettuare un’iterazione per tutti gli elementi di una lista,
+	# avendo sia gli indici che i valori come variabili da gestire.
+
+	lista = [33,14,22,64,36]
+	for i in enumerate(lista):
+		print(i[0],i[1])
+
+	def incrementa(x):
+		return x + 1
+
+	print("\nfumzione map e filter\n")
+	lista = [2,6,12,3,5]
+	#map riceve una funzione e un obj iterabile e appica la funzione a ogni elemento
+	res = list(map(incrementa,lista))
+	print(res)
+	ris=list(filter(lambda y: y<5,lista))
+	print(ris)
+		
 
 #utilizzo stringhe
 def string():
@@ -342,15 +414,209 @@ def string():
 	msg1 = "Il mio nome è {name} e il mio cognome {surname}".format(name=7,surname=5)
 	print(msg1)
 
+	"""
+	join() – concatena una lista di stringhe con un carattere separatore
+	replace() – sostituisce una substringa con un’altra
+	startswith() – verifica se la stringa inizia con una particolare sequenza di caratteri
+	endswith() – verifica se la stringa finisce con una particolare sequenza di caratteri
+	upper() – converte tutti i caratteri della stringa in maiuscolo
+	lower() – converte tutti i caratteri della stringa in minuscolo
+	split() – suddivide una stringa in una lista di stringhe in corrispondenza di un carattere separatore
 	
+	"""
+
+	str1 = ",".join(["Uno","Due","Tre"])
+	print(str1)
+
+	str2 = "Questa è bella".replace("Questa","Quella")
+	print(str2)
+
+	bool1 = "Questa è una frase".startswith("Questa")
+	print(bool1)
+
+	bool2 = "Questa è una frase".endswith("frase")
+	print(bool2)
+
+	str3 = "Frase in maiuscolo".upper()
+	print(str3)
+
+	str4 = "FRASE IN MINUSCOLO".lower()
+	print(str4)
+
+	lista = "Uno,Due,Tre".split(",")
+	print(lista)
+
+
+def decoratore(func):
+	def wrap():
+		print("Estensione della funzione originale")
+		func()
+	return wrap
+
+@decoratore
+def saluta():
+	print("Hello World!")
+	deco = decoratore(saluta)
+
+
+
+
+def fattoriale(fact):
+	if fact == 1:
+		return 1
+	else:
+		return fact*fattoriale(fact-1)
+
+def is_even(x):
+	if x == 0:
+		return True
+	else:
+		return is_odd(x-1)
+
+def is_odd(x):
+	return not is_even(x)
+	print(is_odd(23))
+
+
+def iterator():
+	from itertool import count
+	for i in count(4):
+		if i > 10:
+			break
+		print(i)
+		#La funzione count() comincia a contare da un determinato valore.
+		#La funzione cycle() effettua una iterazione infinita su di un oggetto iterable
+		#La funzione repeat() ripete un oggetto, sia infinte volte che per un determinato valore di volte.
+		#takewhile() – prende gli elementi di un oggetto iterabile finchè una funzione predicato rimane True
+		#chain() – combina diversi oggetti iterabili in un’unico oggetto iterabile
+		#accumulate() – restituisce il numero totale di valori in un oggetto iterabile.
+
+	from itertools import accumulate, takewhile, chain
+	lista1 = list(accumulate(range(7)))
+	print(lista1)
+	lista2 = list(takewhile(lambda x: x<5, lista1))
+	print(lista2)
+	print(list(chain(lista1,lista2)))
+
+	#procuct() prodotto cartesiano
+	#permutation() combinazioni o permutazioni
+	from itertools import permutations, product
+	lettere = ("A","B","C")
+	prodotto = list(product(lettere,lettere))
+	combinazioni = list(permutations(lettere))
+	print(prodotto)
+	print(combinazioni)
+
+
+
+
+
+
+def classi():
+
+	#esempio auto
+	class Auto:
+		nazione = "Italia"
+		def __init__(self,colore,prezzo):
+			self.colore = colore
+			self.prezzo = prezzo
+
+		def compra(self):
+			print("L'auto {0} è tua per {1} euro".format(self.colore,self.prezzo))
+
+
+	bmw = Auto("rosso",40000)
+	panda = Auto("verde", 6000)
+
+	print(bmw.colore)
+	print(panda.prezzo)
+
+	print(bmw.nazione)
+	bmw.compra()
+
+
+
+	class Figura:
+		def __init__(self,colore,area):
+			self.colore = colore
+			self.area = area
+
+		def assegna(self):
+			print("“Sono una figura”")
+
+		
+
+	class Triangolo(Figura):
+		def assegna(self):
+			print("“Sono un triangolo”") 
+
+	class Quadrato(Figura):
+		def assegna(self):
+			print("“Sono un quadrato”")
+			super().assegna()	
 	
+	scaleno = Triangolo("rosso",120)
+	quadro = Quadrato("giallo",16)
+	quadro.assegna()
+	print(quadro.colore)
+
+	scaleno.assegna()
+	print(scaleno.colore)
+
+
+
+	#metodi classmethod per cambiare numero paramentri
+	class Rectangle:
+		def __init__(self, width, height):
+			self.width = width
+			self.height = height
+
+		def calculate_area(self):
+			return self.width * self.height 
+
+		@classmethod
+		def new_square(cls, side_length):
+			return cls(side_length, side_length)
+
+	#esempio costruttore quadraro solo con paramereo lato		
+	square = Rectangle.new_square(5)
+	print(square.calculate_area())
+
+
+	class Pizza:
+		def __init__(self, toppings):
+			self.toppings = toppings
+
+		@property
+		def pineapple_allowed(self):
+			return False
+
+		@staticmethod
+		def validate_topping(topping):
+			if topping == "pineapple":
+				raise ValueError("No pineapple")
+			else:
+				Trueingredients = ["cheese","onions","tomato"]
+				return Trueingredients
+
+
+	ingredients = ["cheese","onions"]
+	#controllo prima di una nuova istanziazione con metodo static
+	if all(Pizza.validate_topping(i) for i in ingredients):
+		Pizza = Pizza(ingredients)
+
+	#pizza = Pizza(["cheese","tomato"])
+	print(Pizza.pineapple_allowed)		
+	Pizza.pineapple_allowed = True
+
+
 #MAIN
 scelta = 1
 while (scelta != 0 ):
 	
-	scelta = input("\n\n\n\nCosa vuoi fare?\n  1) Fibonacci\n  2) Radice Quadrata\n  3) Divisione\n  4) Liste\n  5) Rand\n  6) File\n  7) Dizionari\n  8) Stringhe\n  99)Snake\n  0) Esci\n\nScelta: ")
+	scelta = input("\n\n\n\nCosa vuoi fare?\n  1) Fibonacci & Matematica\n  2) Classi\n  3) Divisione\n  4) Liste\n  5) Rand\n  6) File\n  7) Dizionari & Set\n  8) Stringhe\n  9) Decoratori\n 10)itertools\n  99)Snake\n  0) Esci\n\nScelta: ")
 	scelta = int(scelta)
-	assert (scelta <= 8 or scelta == 99), "scelta non valida"
+	assert (scelta <= 10 or scelta == 99), "scelta non valida"
 
 	if(scelta == 1):
 		print("\n"+fibonacci.__doc__)
@@ -360,7 +626,6 @@ while (scelta != 0 ):
 		print("\nRisultato: " + str(fibonacci(x)))
 		input()
 
-	elif(scelta == 2):
 		print("\n"+rad.__doc__)
 		input()
 		y = input("Radice quadrata di: ")
@@ -368,6 +633,14 @@ while (scelta != 0 ):
 		ris = str(rad(y))
 		print("\n\nRisutato: " + ris)
 		input("")
+		matematica()
+		fact = input("inserire intero per il calcolo del fattoriale: ")
+		fact = int(fact)
+		print(fattoriale(fact))
+		print(is_even(23))
+
+	elif(scelta == 2):
+		classi()
 
 	elif(scelta == 3):
 		print("\n"+trymode.__doc__)
@@ -385,16 +658,23 @@ while (scelta != 0 ):
 
 	elif(scelta == 7):
 		dizionari()
+		print("\nE ora i set\n")
+		setExample()
 
 	elif(scelta == 8):
 		string()
 
+	elif(scelta == 9):
+		saluta()
+
+	elif(scelta == 10):
+		iterator()
+			
 	elif(scelta == 99):
 		snake()
 
 	else:
 		print("\nArrivederci!")
-
 
 
 
